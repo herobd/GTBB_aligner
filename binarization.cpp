@@ -55,6 +55,7 @@ Mat Binarization::ntirogiannisBinarization(const Mat& src, int off, int on, bool
     extract_feat(BG_prime,NULL, &BG_average, &BG_std);
     double C = -50.0*log10((FG_average+FG_std)/(BG_average-BG_std));
     double SW = strokeWidth(first_binarization,skel);   
+    if (SW < 1) SW = 1; // Avoid zero window size on 2nd niblack binarization
     
     cout << "FG_avg: "<<FG_average<<" FG_std: "<<FG_std<<" BG_avg: "<<BG_average<<" BG_std: "<<BG_std<<" C: "<<C<<" SW: "<<SW<<endl;
     
